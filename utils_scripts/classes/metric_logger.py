@@ -54,7 +54,7 @@ class MetricLogger:
                     "{meters}",
                     "time: {time}",
                     "data: {data}",
-                    "max mem: {memory:.0f}",
+                    "max mem: {memory:.0f} Mb",
                 ]
             )
         else:

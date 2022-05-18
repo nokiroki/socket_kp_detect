@@ -9,8 +9,9 @@ import torch
 import torch.distributed as dist
 import albumentations as A
 
-from classes.metric_logger import MetricLogger
-from classes.smooth_value import SmoothedValue
+from .classes.metric_logger import MetricLogger
+from .classes.smooth_value import SmoothedValue
+
 
 def collate_fn(batch):
     return tuple(zip(*batch))
@@ -24,7 +25,7 @@ def train_one_epoch(model,
                     print_freq,
                     scaler=None):
     model.train()
-    metricLogger = MetricLogger(delimiter="  ")
+    metricLogger = MetricLogger(delimiter="\t")
     metricLogger.add_meter("lr", SmoothedValue(window_size=1, fmt="{value:.6f}"))
     header = f"Epoch: [{epoch}]"
 
@@ -93,7 +94,7 @@ def evaluate(model, data_loader, device):
     torch.set_num_threads(1)
     cpu_device = torch.device("cpu")
     model.eval()
-    metric_logger = MetricLogger(delimiter="  ")
+    metric_logger = MetricLogger(delimiter="\t")
     header = "Test:"
 
     coco = get_coco_api_from_dataset(data_loader.dataset)
