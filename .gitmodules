@@ -1,0 +1,6 @@
+[submodule "cycada_release"]
+	path = cycada_release
+	url = https://github.com/jhoffman/cycada_release.git
+[submodule "socket-superpoint"]
+	path = socket-superpoint
+	url = https://github.com/nokiroki/socket-superpoint.git
